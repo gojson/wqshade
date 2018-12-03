@@ -1,0 +1,23 @@
+将以下脚本文件复制到数据库执行，实现1.79版本到1.81版本更新。
+安装1.81版本的请忽略。
+
+CREATE TABLE `ims_article_comment` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `articleid` int(10) unsigned NOT NULL,
+  `parentid` int(10) unsigned NOT NULL,
+  `uid` int(10) unsigned NOT NULL,
+  `content` varchar(500) DEFAULT NULL,
+  `is_like` tinyint(1) NOT NULL,
+  `is_reply` tinyint(1) NOT NULL,
+  `like_num` int(10) unsigned NOT NULL,
+  `createtime` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `articleid` (`articleid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+ALTER TABLE `ims_modules`  MODIFY  `aliapp_support` tinyint(1) NOT NULL；
+ALTER TABLE `ims_modules_cloud`  MODIFY `aliapp_support` tinyint(1) NOT NULL；
+ALTER TABLE `ims_uni_settings`  MODIFY  `attachment_limit` int(11) DEFAULT NULL；
+ALTER TABLE `ims_uni_settings`  MODIFY  `attachment_size` varchar(20) DEFAULT NULL；
+ALTER TABLE `ims_users_founder_group`  MODIFY   `maxaliapp` int(10) NOT NULL；
+ALTER TABLE `ims_users_group`  MODIFY  `maxaliapp` int(10) NOT NULL；
